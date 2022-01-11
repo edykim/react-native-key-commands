@@ -9,13 +9,13 @@
 #import "RCTKeyCommandsView.h"
 
 @implementation RCTKeyCommandsView {
-    NSMutableArray<UIKeyCommand *> *currentKeyCommands;
+    NSArray<UIKeyCommand *> *currentKeyCommands;
 }
 
 -(instancetype) init {
     self = [super init];
     if (self) {
-        currentKeyCommands = [NSMutableArray new];
+        currentKeyCommands = @[];
         [self becomeFirstResponder];
     }
     return self;
@@ -26,13 +26,11 @@
 }
 
 - (NSArray<UIKeyCommand *> *)keyCommands {
-    return [NSArray arrayWithArray: currentKeyCommands];
+    return currentKeyCommands;
 }
 
 - (void) setKeyCommandsWithData:(NSArray<NSDictionary *> *) data {
-    
-    [currentKeyCommands removeAllObjects];
-
+    currentKeyCommands = @[];
     if (data == (id) [NSNull null]) {
         return;
     }
@@ -59,7 +57,7 @@
         }
         [_keyCommands addObject:command];
     }
-    currentKeyCommands = [_keyCommands copy];
+    currentKeyCommands = [NSArray arrayWithArray:_keyCommands];
 }
 
 - (void) onKeyCommand:(UIKeyCommand *)keyCommand {
