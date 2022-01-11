@@ -13,6 +13,6 @@
 
 @property (nullable, copy) RCTBubblingEventBlock onKeyCommand;
 
-- (void) setKeyCommandsWithJSON:(id _Nullable)json;
+- (void) setKeyCommandsWithData:(NSArray<NSDictionary *> *_Nullable) data;
 
 @end
