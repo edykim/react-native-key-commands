@@ -1,5 +1,5 @@
 {
-  "name": "@envoy/react-native-key-commands",
+  "name": "react-native-key-commands",
   "version": "0.0.6",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
