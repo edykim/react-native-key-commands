@@ -1,6 +1,6 @@
 {
   "name": "@envoy/react-native-key-commands",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "keywords": ["react-native"],
@@ -9,6 +9,10 @@
     "name": "Fang-Pen Lin",
     "email": "hello@fangpenlin.com",
     "url": "https://fangpenlin.com"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc"
   },
   "rnpm": {},
   "devDependencies": {
