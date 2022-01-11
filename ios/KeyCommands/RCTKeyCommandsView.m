@@ -39,7 +39,7 @@
 
     for (NSDictionary *commandJSON in data) {
         NSString *input = commandJSON[@"input"];
-        NSNumber *flags = commandJSON[@"modifierFlags"];
+        NSNumber *flags = commandJSON[@"keyModifier"];
         NSString *discoverabilityTitle = commandJSON[@"discoverabilityTitle"];
         if (!flags) {
             flags = @0;
@@ -64,7 +64,7 @@
     if (self.onKeyCommand) {
         self.onKeyCommand(@{
             @"input": keyCommand.input,
-            @"modifierFlags": [NSNumber numberWithInteger:keyCommand.modifierFlags],
+            @"keyModifier": [NSNumber numberWithInteger:keyCommand.modifierFlags],
             @"discoverabilityTitle": keyCommand.discoverabilityTitle ? keyCommand.discoverabilityTitle : [NSNull null]
         });
     }
