@@ -1,5 +1,7 @@
 {
   "name": "react-native-key-commands",
+  "description": "iOS UIKeyCommand native component for React Native",
+  "homepage": "https://github.com/edykim/react-native-key-commands",
   "version": "0.0.6",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
