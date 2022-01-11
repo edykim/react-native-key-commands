@@ -32,6 +32,11 @@
 - (void) setKeyCommandsWithData:(NSArray<NSDictionary *> *) data {
     
     [currentKeyCommands removeAllObjects];
+
+    if (data == (id) [NSNull null]) {
+        return;
+    }
+
     NSMutableArray<UIKeyCommand *> *_keyCommands = [NSMutableArray new];
 
     for (NSDictionary *commandJSON in data) {
