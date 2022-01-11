@@ -9,13 +9,14 @@
 #import "RCTKeyCommandsView.h"
 
 @implementation RCTKeyCommandsView {
-    NSArray<UIKeyCommand *> *currentKeyCommands;
+    NSMutableArray<UIKeyCommand *> *currentKeyCommands;
 }
 
 -(instancetype) init {
     self = [super init];
     if (self) {
-        currentKeyCommands = @[];
+        currentKeyCommands = [NSMutableArray new];
+        [self becomeFirstResponder];
     }
     return self;
 }
@@ -25,16 +26,15 @@
 }
 
 - (NSArray<UIKeyCommand *> *)keyCommands {
-    return currentKeyCommands;
+    return [NSArray arrayWithArray: currentKeyCommands];
 }
 
-- (void) setKeyCommandsWithJSON:(id)json {
-    if (!json) {
-        currentKeyCommands = @[];
-    }
-    NSArray<NSDictionary *> *commandsArray = json;
-    NSMutableArray<UIKeyCommand *> *keyCommands = [NSMutableArray array];
-    for (NSDictionary *commandJSON in commandsArray) {
+- (void) setKeyCommandsWithData:(NSArray<NSDictionary *> *) data {
+    
+    [currentKeyCommands removeAllObjects];
+    NSMutableArray<UIKeyCommand *> *_keyCommands = [NSMutableArray new];
+
+    for (NSDictionary *commandJSON in data) {
         NSString *input = commandJSON[@"input"];
         NSNumber *flags = commandJSON[@"modifierFlags"];
         NSString *discoverabilityTitle = commandJSON[@"discoverabilityTitle"];
@@ -52,9 +52,9 @@
                                           modifierFlags:[flags integerValue]
                                                  action:@selector(onKeyCommand:)];
         }
-        [keyCommands addObject:command];
+        [_keyCommands addObject:command];
     }
-    currentKeyCommands = keyCommands;
+    currentKeyCommands = [_keyCommands copy];
 }
 
 - (void) onKeyCommand:(UIKeyCommand *)keyCommand {
